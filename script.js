@@ -124,6 +124,13 @@ resetButton.addEventListener("click", () => {
     resetGame();
 });
 
+// New game button event listener
+newGameButton.addEventListener("click", () => {
+    resetGame();
+    playerChoiceDiv.style.display = "block";
+    gameContainer.style.display = "none";
+});
+
 // Reset game state and board
 function resetGame() {
     board = ["", "", "", "", "", "", "", "", ""];
@@ -132,4 +139,3 @@ function resetGame() {
     cells.forEach(cell => (cell.textContent = ""));
     gameOverPopup.style.display = "none";  // Hide the popup
 }
-
