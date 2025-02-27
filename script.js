@@ -3,8 +3,8 @@ const resetButton = document.getElementById("reset");
 const gameOverPopup = document.getElementById("game-over-popup");
 const newGameButton = document.getElementById("new-game");
 const gameContainer = document.querySelector(".game-container");
-const playerChoiceDiv = document.getElementById("player-choice");
-let currentPlayer = null;
+
+let currentPlayer = "X"; // Player starts as X
 let board = ["", "", "", "", "", "", "", "", ""];
 let gameOver = false;
 
@@ -15,20 +15,11 @@ const winPatterns = [
     [0, 4, 8], [2, 4, 6]
 ];
 
-// Allow player to choose X or O
-document.getElementById("choose-x").addEventListener("click", () => {
-    currentPlayer = "X";
-    startGame();
-});
+// Start game directly with "X" and computer as "O"
+startGame();
 
-document.getElementById("choose-o").addEventListener("click", () => {
-    currentPlayer = "O";
-    startGame();
-});
-
-// Start game
+// Start game function
 function startGame() {
-    playerChoiceDiv.style.display = "none";
     gameContainer.style.display = "flex";
     resetGame();
 }
@@ -127,15 +118,15 @@ resetButton.addEventListener("click", () => {
 // New game button event listener
 newGameButton.addEventListener("click", () => {
     resetGame();
-    playerChoiceDiv.style.display = "block";
-    gameContainer.style.display = "none";
+    gameContainer.style.display = "flex"; // Show the game container
+    gameOverPopup.style.display = "none"; // Hide the game over popup
 });
 
 // Reset game state and board
 function resetGame() {
     board = ["", "", "", "", "", "", "", "", ""];
     gameOver = false;
-    currentPlayer = "X";
+    currentPlayer = "X"; // Player always starts as X
     cells.forEach(cell => (cell.textContent = ""));
     gameOverPopup.style.display = "none";  // Hide the popup
 }
